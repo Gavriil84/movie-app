@@ -6,12 +6,13 @@ import TvShows from '../containers/TvShows';
 
 const Tab = createMaterialTopTabNavigator();
 
-const TopNavigation = () => {
+const IndexScreen = () => {
     return (
 
         <Tab.Navigator
             screenOptions={{
-                tabBarLabelStyle: { fontSize: 10 },
+                tabBarLabelStyle: { fontSize: 14, textTransform: 'none' },
+                tabBarIndicatorStyle: { backgroundColor: "#2c3e50" },
             }}
         >
             <Tab.Screen name="Movies" component={MoviesContainer} />
@@ -22,4 +23,4 @@ const TopNavigation = () => {
     )
 }
 
-export default TopNavigation
+export default IndexScreen
