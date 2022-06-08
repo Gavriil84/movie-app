@@ -13,10 +13,8 @@ export default function App() {
 
   return (
     <NativeBaseProvider>
-      <NavigationContainer>
-        <AppStack />
-        <StatusBar style='light' />
-      </NavigationContainer>
+      <StatusBar style='light' />
+      <AppStack />
     </NativeBaseProvider>
   );
 }
