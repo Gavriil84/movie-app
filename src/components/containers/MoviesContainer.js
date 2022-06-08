@@ -3,37 +3,43 @@ import React, { useEffect, useState } from 'react'
 import MovieCard from '../listitems/MovieCard'
 import Menu from '../menus/Menu'
 import axios from 'axios'
-import { POPULAR } from '../../config/api_config'
+import { NOW_PLAYING, POPULAR, TOP_RATED, UPCOMING, BASE_URL, API_KEY } from '../../config/api_config'
 import { StyleSheet } from 'react-native';
 
-const popular = axios.create({
-    baseURL: POPULAR
+const url = axios.create({
+    baseURL: BASE_URL
 })
 
 const MoviesContainer = () => {
-    const [popularMovie, setPopularMovie] = useState([])
+    const [movie, setMovie] = useState([])
+    const [apiCategory, setApiCategory] = useState('popular')
 
     useEffect(() => {
-        popular.get().then(
-            res => {
-                setPopularMovie(res.data.results)
-            }
-        )
-    }, [])
+        if (apiCategory === 'popular' || apiCategory === 'top_rated' || apiCategory === 'upcoming' || apiCategory === 'now_playing') {
+            url.get(`${BASE_URL}${apiCategory}${API_KEY}`).then(
+                res => {
+                    setMovie(res.data.results)
+                }
+            )
+        }
+
+    }, [apiCategory])
 
 
     return (
         <>
             <Box width="100%" style={styles.container}>
-                <Menu />
+                <Menu apiCategory={apiCategory} setApiCategory={setApiCategory} />
                 <FlatList
-                    data={popularMovie}
+                    data={movie}
                     renderItem={({ item }) => (
                         <MovieCard
                             image={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                             title={item.title}
                             popularity={item.popularity}
                             release_date={item.release_date}
+                            id={item.id}
+                            overview={item.overview}
                         />
                     )}>
                 </FlatList>
