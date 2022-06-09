@@ -1,20 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useState } from 'react'
-import { CheckIcon, Icon, Select, VStack } from 'native-base'
-import { Ionicons } from '@expo/vector-icons'
+import { CheckIcon, Select, VStack } from 'native-base'
 
 
 
-const Menu = () => {
-    const [category, setCategory] = useState("popular")
-
+const Menu = (props) => {
+    const { apiCategory, setApiCategory } = props
 
     return (
         <VStack mt={10} mb={10} space={6} alignSelf='center' w='100%'>
             <Select
-                selectedValue={category}
+                selectedValue={apiCategory}
                 mx={10}
-                onValueChange={nextValue => setCategory(nextValue)}
+                onValueChange={nextValue => setApiCategory(nextValue)}
                 _selectedItem={{
                     bg: "emerald.600",
                     borderRadius: 5,
