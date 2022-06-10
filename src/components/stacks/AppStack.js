@@ -29,10 +29,9 @@ const AppStack = () => (
                 options={({ route }) => ({
                     title: route.params.title,
                     id: route.params.id,
-                    release_date: route.params.release_date,
-                    popularity: route.params.popularity,
-                    overview: route.params.overview,
                     image: route.params.image,
+                    searchType: route.params.searchType,
+                    media_type: route.params.media_type,
                     headerBackTitle: 'Back to List'
                 })}
             />
