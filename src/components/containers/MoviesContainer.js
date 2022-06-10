@@ -15,13 +15,13 @@ const MoviesContainer = () => {
     const [apiCategory, setApiCategory] = useState('popular')
 
     useEffect(() => {
-        if (apiCategory === 'popular' || apiCategory === 'top_rated' || apiCategory === 'upcoming' || apiCategory === 'now_playing') {
-            url.get(`${BASE_URL}${apiCategory}${API_KEY}`).then(
-                res => {
-                    setMovie(res.data.results)
-                }
-            )
-        }
+
+        url.get(`${BASE_URL}movie/${apiCategory}${API_KEY}&language=en-US&page=1`).then(
+            res => {
+                setMovie(res.data.results)
+            }
+        )
+
 
     }, [apiCategory])
 
@@ -40,6 +40,8 @@ const MoviesContainer = () => {
                             release_date={item.release_date}
                             id={item.id}
                             overview={item.overview}
+                            media_type={item.media_type}
+                            searchType='movie'
                         />
                     )}>
                 </FlatList>
