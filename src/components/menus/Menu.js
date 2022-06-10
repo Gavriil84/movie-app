@@ -30,5 +30,3 @@ const Menu = (props) => {
 }
 
 export default Menu
-
-const styles = StyleSheet.create({})
